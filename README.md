@@ -68,6 +68,13 @@ The frontend is a TypeScript React application developed with Vite, using Chakra
 
 The application is wrapped with `ChakraProvider` in `frontend/src/main.tsx` to enable Chakra UI's styling and theming capabilities.
 
+##### Authentication Routes
+
+After starting the frontend, you can access the following authentication routes:
+*   **Home:** `http://localhost:5173/` (with links to Register/Login)
+*   **Register:** `http://localhost:5173/register`
+*   **Login:** `http://localhost:5173/login`
+
 1.  Navigate to the `frontend` directory:
     ```bash
     cd frontend
