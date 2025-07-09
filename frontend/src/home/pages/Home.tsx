@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Box, Heading, Text, Button } from '@chakra-ui/react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getApiBaseUrl } from '../../shared/utils/api'
-import { useAuth } from '../../auth/AuthContext'
+import { useAuth } from '../../auth/hooks/useAuth'
 
 function Home() {
   const { isLoggedIn } = useAuth();

@@ -1,11 +1,19 @@
 import { getApiBaseUrl } from '../../shared/utils/api';
 import axios from 'axios';
 
-interface AuthResponse {
+export interface AuthResponse {
   message?: string;
   error?: string;
   access_token?: string;
 }
+
+export const getToken = (): string | null => {
+  return localStorage.getItem('access_token');
+};
+
+export const removeToken = (): void => {
+  localStorage.removeItem('access_token');
+};
 
 export const login = async (email: string, password: string): Promise<AuthResponse> => {
   const backendUrl = getApiBaseUrl();
@@ -14,6 +22,13 @@ export const login = async (email: string, password: string): Promise<AuthRespon
       email,
       password,
     });
+
+    console.log('Login response data:', response.data); // Debugging line
+
+    if (response.data.access_token) {
+      localStorage.setItem('access_token', response.data.access_token);
+      console.log('Access token stored:', response.data.access_token); // Debugging line
+    }
 
     return response.data;
   } catch (error) {
@@ -46,8 +61,7 @@ export const register = async (email: string, password: string): Promise<AuthRes
 };
 
 export const logout = async (): Promise<AuthResponse> => {
-  // In a real application, this would typically involve invalidating a token on the backend
-  // and clearing local storage/cookies on the frontend.
+  removeToken();
   console.log('Logout function called.');
   return { message: 'Logged out successfully.' };
 };

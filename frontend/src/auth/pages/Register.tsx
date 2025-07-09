@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../auth/AuthContext';
+import { useAuth } from '../../auth/hooks/useAuth';
 import { useEffect } from 'react';
+import { AuthResponse } from '../../auth/services/auth';
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ function Register() {
     setMessage('');
 
     try {
-      const data = await register(email, password);
+      const data = await register(email, password) as AuthResponse;
 
       if (data.message) {
         setMessage(data.message || 'Registration successful!');

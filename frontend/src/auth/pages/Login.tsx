@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../auth/AuthContext';
+import { useAuth } from '../../auth/hooks/useAuth';
 import { useEffect } from 'react';
+import { AuthResponse } from '../../auth/services/auth';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ function Login() {
     setMessage('');
 
     try {
-      const data = await login(email, password);
+      const data = await login(email, password) as AuthResponse;
 
       if (data.message) {
         setMessage(data.message || 'Login successful!');
