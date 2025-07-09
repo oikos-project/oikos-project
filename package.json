@@ -4,8 +4,9 @@
   "description": "Root package for oikos-project",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"python backend/main.py\" \"yarn start --cwd frontend\"",
-    "bootstrap": "pip install -r backend/requirements.txt && yarn install --cwd frontend && yarn install"
+    "dev": "concurrently 'python -m backend.run' 'yarn start --cwd frontend'",
+    "bootstrap": "pip install -r backend/requirements.txt && yarn install --cwd frontend && yarn install",
+    "clean": "rm -rf backend/data/ backend/__pycache__/ frontend/node_modules/ frontend/dist/ frontend/build/ node_modules/ yarn.lock frontend/yarn.lock"
   },
   "keywords": [],
   "author": "",
