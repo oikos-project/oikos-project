@@ -1,35 +1,27 @@
 import React, { useState } from 'react';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { login } from '../services/auth';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
-  const backendUrl = import.meta.env.OIKOS_API_URL || 'http://localhost:51730';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
 
     try {
-      const response = await fetch(`${backendUrl}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const data = await login(email, password);
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (data.message) {
         // In a real app, you'd store the JWT (data.access_token) here
         setMessage(data.message || 'Login successful!');
         navigate('/main');
       } else {
-        setMessage(data.message || data.error || 'Login failed.');
+        setMessage(data.error || 'Login failed.');
       }
     } catch (error) {
       setMessage('Network error or server is unreachable.');

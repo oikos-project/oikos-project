@@ -1,34 +1,26 @@
 import React, { useState } from 'react';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
+import { register } from '../services/auth';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const backendUrl = import.meta.env.OIKOS_API_URL || 'http://localhost:51730';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
 
     try {
-      const response = await fetch(`${backendUrl}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const data = await register(email, password);
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (data.message) {
         setMessage(data.message || 'Registration successful!');
         setEmail('');
         setPassword('');
       } else {
-        setMessage(data.message || data.error || 'Registration failed.');
+        setMessage(data.error || 'Registration failed.');
       }
     } catch (error) {
       setMessage('Network error or server is unreachable.');
