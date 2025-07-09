@@ -16,7 +16,7 @@ def login_user_service(email, password):
 
         # Generate JWT Token
         token_payload = {
-            "user_id": user.id,
+            "user_id": str(user.id),
             "exp": datetime.now(UTC) + timedelta(hours=24),  # Token expires in 24 hours
         }
         access_token = jwt.encode(token_payload, SECRET_KEY, algorithm="HS256")

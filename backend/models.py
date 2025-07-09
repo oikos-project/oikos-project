@@ -1,11 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Uuid
 from backend.database import Base
+import uuid
 
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Uuid, primary_key=True, index=True, default=uuid.uuid4)
     email = Column(String, unique=True, index=True)
     password_hash = Column(String)
 
