@@ -1,6 +1,7 @@
 # Oikos Project
 
 [![Backend Tests](https://github.com/oikos-project/oikos-project/actions/workflows/python-tests.yml/badge.svg)](https://github.com/oikos-project/oikos-project/actions/workflows/python-tests.yml)
+[![Frontend Tests](https://github.com/oikos-project/oikos-project/actions/workflows/frontend-tests.yml/badge.svg)](https://github.com/oikos-project/oikos-project/actions/workflows/frontend-tests.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 Welcome to the Oikos Project! Oikos, meaning "home and family" in ancient Greek, is an open-source personal assistant designed to seamlessly integrate with your digital and physical life. This project aims to provide a multi-tenant solution for managing various aspects of your personal and professional world, from email and calendar integration to home automation.
