@@ -3,3 +3,4 @@ SQLAlchemy
 Werkzeug
 Flask-Cors
 zxcvbn-python
+PyJWT

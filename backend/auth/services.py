@@ -1,8 +1,10 @@
+import jwt
+from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 from zxcvbn import zxcvbn
 from backend.database import SessionLocal
 from backend.models import User
-from backend.config import ALLOW_OPEN_REGISTRATION
+from backend.config import ALLOW_OPEN_REGISTRATION, SECRET_KEY
 
 def login_user_service(email, password):
     db = SessionLocal()
@@ -10,7 +12,16 @@ def login_user_service(email, password):
         user = db.query(User).filter_by(email=email).first()
         if not user or not check_password_hash(user.password_hash, password):
             return {"success": False, "message": "Invalid credentials."}
-        return {"success": True, "message": "Login successful", "user": {"id": user.id, "email": user.email}}
+
+        # Generate JWT token
+        token_payload = {
+            'user_id': user.id,
+            'email': user.email,
+            'exp': datetime.utcnow() + timedelta(hours=24)  # Token expires in 24 hours
+        }
+        access_token = jwt.encode(token_payload, SECRET_KEY, algorithm='HS256')
+
+        return {"success": True, "message": "Login successful", "user": {"id": user.id, "email": user.email}, "access_token": access_token}
     finally:
         db.close()
 
