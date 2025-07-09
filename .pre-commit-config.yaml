@@ -6,6 +6,13 @@ repos:
         language_version: python3.13 # Specify Python version
   - repo: local
     hooks:
+      - id: eslint-frontend
+        name: Run Frontend Lint (ESLint)
+        entry: bash -c 'cd frontend && yarn lint'
+        language: system
+        types: [javascript]
+        pass_filenames: false
+        always_run: true
       - id: pytest-backend
         name: Run Backend Tests
         entry: bash -c 'PYTHONPATH=. pytest backend/tests'
