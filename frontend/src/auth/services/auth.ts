@@ -32,7 +32,7 @@ export const login = async (email: string, password: string): Promise<AuthRespon
 
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (error.response) {
       return { error: error.response.data.error || error.response.data.message || 'Login failed.' };
     } else {
       console.error('Login API error:', error);
@@ -51,7 +51,7 @@ export const register = async (email: string, password: string): Promise<AuthRes
 
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (error.response) {
       return { error: error.response.data.error || error.response.data.message || 'Registration failed.' };
     } else {
       console.error('Register API error:', error);

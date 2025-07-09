@@ -55,7 +55,7 @@ function Register() {
           Register
         </Button>
       </form>
-      {message && <Text mt={4} textAlign="center" color={message.includes('successful') ? 'green.500' : 'red.500'}>{message}</Text>}
+      {message && <Text mt={4} textAlign="center" color={message.includes('successful') ? 'green.500' : 'red.500'} data-testid="register-message">{message}</Text>}
       <Text mt={4} textAlign="center">
         Already have an account? <Link as={RouterLink} to="/login" color="teal.500">Login here</Link>
       </Text>

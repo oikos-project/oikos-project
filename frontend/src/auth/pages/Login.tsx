@@ -25,8 +25,8 @@ function Login() {
     try {
       const data = await login(email, password) as AuthResponse;
 
-      if (data.message) {
-        setMessage(data.message || 'Login successful!');
+      if (data.access_token) {
+        setMessage('Login successful!');
         navigate('/main'); // Redirect directly on success
       } else {
         setMessage(data.error || 'Login failed.');
@@ -53,7 +53,7 @@ function Login() {
           Login
         </Button>
       </form>
-      {message && <Text mt={4} textAlign="center" color={message.includes('successful') ? 'green.500' : 'red.500'}>{message}</Text>}
+      {message && <Text mt={4} textAlign="center" color={message.includes('successful') ? 'green.500' : 'red.500'} data-testid="login-message">{message}</Text>}
       <Text mt={4} textAlign="center">
         Don't have an account? <Link as={RouterLink} to="/register" color="teal.500">Register here</Link>
       </Text>
