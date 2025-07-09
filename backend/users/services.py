@@ -1,6 +1,7 @@
 from backend.database import SessionLocal
 from backend.models import User
 
+
 def get_all_users_service():
     db = SessionLocal()
     try:

@@ -4,6 +4,7 @@ from backend.database import Base, engine
 from backend.users.routes import users_bp
 from backend.auth.routes import auth_bp
 
+
 def create_app():
     app = Flask(__name__)
     CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
@@ -16,8 +17,8 @@ def create_app():
     if not app.config.get("TESTING"):
         Base.metadata.create_all(bind=engine)
 
-    @app.route('/')
+    @app.route("/")
     def hello_world():
-        return 'Hello from Modular Flask Backend!'
+        return "Hello from Modular Flask Backend!"
 
     return app

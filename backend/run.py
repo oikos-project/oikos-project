@@ -2,5 +2,5 @@ from backend.app import create_app
 
 app = create_app()
 
-if __name__ == '__main__':
-    app.run(debug=True, port=51730, host='127.0.0.1')
+if __name__ == "__main__":
+    app.run(debug=True, port=51730, host="127.0.0.1")

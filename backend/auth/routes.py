@@ -1,13 +1,14 @@
 from flask import Blueprint, request, jsonify
 from .services import login_user_service, register_user_service
 
-auth_bp = Blueprint('auth', __name__)
+auth_bp = Blueprint("auth", __name__)
 
-@auth_bp.route('/auth/login', methods=['POST'])
+
+@auth_bp.route("/auth/login", methods=["POST"])
 def login_user():
     user_data = request.json
-    email = user_data.get('email')
-    password = user_data.get('password')
+    email = user_data.get("email")
+    password = user_data.get("password")
 
     if not email or not password:
         return jsonify({"message": "Email and password are required."}), 400
@@ -18,11 +19,12 @@ def login_user():
     else:
         return jsonify(result), 401 if "credentials" in result["message"] else 500
 
-@auth_bp.route('/auth/register', methods=['POST'])
+
+@auth_bp.route("/auth/register", methods=["POST"])
 def register_user():
     user_data = request.json
-    email = user_data.get('email')
-    password = user_data.get('password')
+    email = user_data.get("email")
+    password = user_data.get("password")
 
     if not email or not password:
         return jsonify({"message": "Email and password are required."}), 400
