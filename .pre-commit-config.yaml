@@ -8,3 +8,10 @@ repos:
         types: [python]
         pass_filenames: false
         always_run: true
+      - id: vitest-frontend
+        name: Run Frontend Tests
+        entry: bash -c 'cd frontend && yarn test'
+        language: system
+        types: [javascript]
+        pass_filenames: false
+        always_run: true
