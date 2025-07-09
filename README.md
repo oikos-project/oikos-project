@@ -1,6 +1,6 @@
 # Oikos Project
 
-[![Backend Tests](https://github.com/oikos-project/oikos-project/actions/workflows/python-tests.yml/badge.svg)](https://github.com/oikos-project/oikos-project/actions/workflows/python-tests.yml)
+[![Backend Tests](https://github.com/oikos-project/oikos-project/actions/workflows/backend-tests.yml/badge.svg)](https://github.com/oikos-project/oikos-project/actions/workflows/backend-tests.yml)
 [![Frontend Tests](https://github.com/oikos-project/oikos-project/actions/workflows/frontend-tests.yml/badge.svg)](https://github.com/oikos-project/oikos-project/actions/workflows/frontend-tests.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
