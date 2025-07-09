@@ -34,10 +34,10 @@ export DATABASE_URL="postgresql://user:password@host:port/dbname"
 To start both the backend API and the frontend application concurrently for development, run the following command from the project root:
 
 ```bash
-yarn dev
+OIKOS_API_URL=http://localhost:51730 yarn dev
 ```
 
-This command uses `concurrently` to manage both processes.
+This command uses `concurrently` to manage both processes. The `VITE_API_URL` environment variable is passed to the frontend to configure its backend connection.
 
 ### Running Individual Components
 
@@ -58,11 +58,15 @@ The backend is a Flask application that provides the core API and database inter
     ```bash
     python run.py
     ```
-    The API will typically be available at `http://localhost:5000`.
+    The API will typically be available at `http://localhost:51730`.
 
-#### Frontend (TypeScript Application)
+#### Frontend (TypeScript React Application)
 
-The frontend is a TypeScript application served by `http-server` for development.
+The frontend is a TypeScript React application developed with Vite, using Chakra UI for its component library.
+
+##### Chakra UI Setup
+
+The application is wrapped with `ChakraProvider` in `frontend/src/main.tsx` to enable Chakra UI's styling and theming capabilities.
 
 1.  Navigate to the `frontend` directory:
     ```bash
@@ -70,6 +74,6 @@ The frontend is a TypeScript application served by `http-server` for development
     ```
 2.  Run the frontend application:
     ```bash
-    yarn start
+    yarn dev
     ```
-    The frontend will typically be available at `http://localhost:3000` (or another port if configured in `frontend/package.json`).
+    The frontend will typically be available at `http://localhost:5173` (Vite's default port).
