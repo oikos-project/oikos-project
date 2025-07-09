@@ -1,0 +1,16 @@
+{
+  "name": "oikos-project-root",
+  "version": "1.0.0",
+  "description": "Root package for oikos-project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"python backend/main.py\" \"yarn start --cwd frontend\"",
+    "bootstrap": "pip install -r backend/requirements.txt && yarn install --cwd frontend && yarn install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
