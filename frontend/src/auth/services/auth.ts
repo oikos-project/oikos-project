@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from '../utils/api';
+import { getApiBaseUrl } from '../../shared/utils/api';
 import axios from 'axios';
 
 interface AuthResponse {

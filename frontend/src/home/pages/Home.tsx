@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Heading, Text, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { getApiBaseUrl } from '../utils/api'
+import { getApiBaseUrl } from '../../shared/utils/api'
 
 function Home() {
   const backendUrl = getApiBaseUrl();
