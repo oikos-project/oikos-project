@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Heading, Text, Button } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getApiBaseUrl } from '../../shared/utils/api'
+import { useAuth } from '../../auth/AuthContext'
 
 function Home() {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
   const backendUrl = getApiBaseUrl();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/main');
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <Box p={8}>

@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { login } from '../services/auth';
+import { useAuth } from '../../auth/AuthContext';
+import { useEffect } from 'react';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const { login, isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/main');
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,9 +25,8 @@ function Login() {
       const data = await login(email, password);
 
       if (data.message) {
-        // In a real app, you'd store the JWT (data.access_token) here
         setMessage(data.message || 'Login successful!');
-        navigate('/main');
+        navigate('/main'); // Redirect directly on success
       } else {
         setMessage(data.error || 'Login failed.');
       }

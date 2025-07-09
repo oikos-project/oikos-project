@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
-import { register } from '../services/auth';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext';
+import { useEffect } from 'react';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+  const { register, isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/main');
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +28,7 @@ function Register() {
         setMessage(data.message || 'Registration successful!');
         setEmail('');
         setPassword('');
+        navigate('/login'); // Redirect to login page on successful registration
       } else {
         setMessage(data.error || 'Registration failed.');
       }
