@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pytest-backend
+        name: Run Backend Tests
+        entry: bash -c 'PYTHONPATH=. pytest backend/tests'
+        language: system
+        types: [python]
+        pass_filenames: false
+        always_run: true

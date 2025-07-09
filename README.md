@@ -60,6 +60,16 @@ The backend is a Flask application that provides the core API and database inter
     ```
     The API will typically be available at `http://localhost:51730`.
 
+#### Running Backend Tests
+
+To execute the backend tests, run the following command from the project root directory:
+
+```bash
+PYTHONPATH=. pytest backend/tests
+```
+
+This command ensures that the `backend` module is correctly found by `pytest` and runs all tests located in the `backend/tests` directory.
+
 #### Frontend (TypeScript React Application)
 
 The frontend is a TypeScript React application developed with Vite, using Chakra UI for its component library.

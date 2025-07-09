@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently 'FLASK_APP=backend.app FLASK_DEBUG=1 flask run --port 51730' 'cd frontend && OIKOS_API_URL=http://localhost:51730 yarn dev'",
-    "bootstrap": "pip install -r backend/requirements.txt && yarn install --cwd frontend && yarn install",
+    "bootstrap": "pip install -r backend/requirements.txt && pip install -r backend/requirements-dev.txt && yarn install --cwd frontend && yarn install",
     "clean": "rm -rf backend/data/ backend/__pycache__/ frontend/node_modules/ frontend/dist/ frontend/build/ node_modules/ yarn.lock frontend/yarn.lock"
   },
   "keywords": [],

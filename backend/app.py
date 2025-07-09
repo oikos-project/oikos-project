@@ -12,9 +12,9 @@ def create_app():
     app.register_blueprint(users_bp)
     app.register_blueprint(auth_bp)
 
-    # Create database tables
-    # This should ideally be handled by a migration tool in production
-    Base.metadata.create_all(bind=engine)
+    # Create database tables only if not in testing mode
+    if not app.config.get("TESTING"):
+        Base.metadata.create_all(bind=engine)
 
     @app.route('/')
     def hello_world():
