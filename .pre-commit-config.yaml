@@ -15,7 +15,7 @@ repos:
         always_run: true
       - id: pytest-backend
         name: Run Backend Tests
-        entry: bash -c 'PYTHONPATH=. pytest backend/tests'
+        entry: bash -c 'cd backend && PYTHONPATH=. pytest tests'
         language: system
         types: [python]
         pass_filenames: false

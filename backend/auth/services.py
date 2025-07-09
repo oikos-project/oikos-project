@@ -2,9 +2,9 @@ import jwt
 from datetime import datetime, timedelta, UTC
 from werkzeug.security import generate_password_hash, check_password_hash
 from zxcvbn import zxcvbn
-from backend.database import get_db
-from backend.models import User
-from backend.config import ALLOW_OPEN_REGISTRATION, SECRET_KEY
+from database import get_db
+from models import User
+from config import ALLOW_OPEN_REGISTRATION, SECRET_KEY
 
 
 def login_user_service(email, password):

@@ -1,13 +1,13 @@
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from backend.database import (
+from database import (
     Base,
     get_db,
     engine,
     SessionLocal,
-)  # Import get_db, engine, SessionLocal from backend.database
-from backend.app import create_app  # Assuming create_app is in backend.app
+)  # Import get_db, engine, SessionLocal from database
+from app import create_app  # Assuming create_app is in app
 
 
 @pytest.fixture(scope="function")
@@ -39,9 +39,9 @@ def db_session(app, monkeypatch):
     test_engine = create_engine(app.config["DATABASE_URL"])
     TestSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
-    # Patch backend.database.engine and backend.database.SessionLocal
-    monkeypatch.setattr("backend.database.engine", test_engine)
-    monkeypatch.setattr("backend.database.SessionLocal", TestSessionLocal)
+    # Patch database.engine and database.SessionLocal
+    monkeypatch.setattr("database.engine", test_engine)
+    monkeypatch.setattr("database.SessionLocal", TestSessionLocal)
 
     Base.metadata.create_all(test_engine)
     connection = test_engine.connect()
@@ -52,7 +52,7 @@ def db_session(app, monkeypatch):
     def override_get_db():
         yield db
 
-    monkeypatch.setattr("backend.database.get_db", override_get_db)
+    monkeypatch.setattr("database.get_db", override_get_db)
 
     yield db
 
@@ -62,5 +62,5 @@ def db_session(app, monkeypatch):
     Base.metadata.drop_all(test_engine)  # Ensure tables are dropped after each test
 
     # Restore original engine and SessionLocal
-    monkeypatch.setattr("backend.database.engine", original_engine)
-    monkeypatch.setattr("backend.database.SessionLocal", original_SessionLocal)
+    monkeypatch.setattr("database.engine", original_engine)
+    monkeypatch.setattr("database.SessionLocal", original_SessionLocal)

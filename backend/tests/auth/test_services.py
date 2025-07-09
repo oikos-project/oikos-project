@@ -1,6 +1,6 @@
 import pytest
-from backend.auth.services import login_user_service, register_user_service
-from backend.models import User
+from auth.services import login_user_service, register_user_service
+from models import User
 from werkzeug.security import generate_password_hash
 
 

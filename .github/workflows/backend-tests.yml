@@ -27,9 +27,7 @@ jobs:
         pip install -r backend/requirements.txt
         pip install -r backend/requirements-dev.txt
 
-    - name: Create data directory
-      run: mkdir -p backend/data
-
     - name: Run tests
       run: |
-        PYTHONPATH=. pytest backend/tests
+        cd backend
+        PYTHONPATH=. pytest tests
